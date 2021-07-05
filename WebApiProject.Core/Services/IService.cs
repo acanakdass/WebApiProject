@@ -9,17 +9,21 @@ namespace WebApiProject.Core.Services
     public interface IService<TEntity> where TEntity:class
     {
         Task<TEntity> GetByIdAsync(int id);
+
         Task<IEnumerable<TEntity>> GetAllAsync();
-        Task<IEnumerable<TEntity>> Find(Expression<Func<TEntity, bool>> predicate);
-        Task<TEntity> Get(Expression<Func<TEntity, bool>> predicate);
-        Task AddAsync(TEntity entity);
+
+        Task<IEnumerable<TEntity>> WhereAsync(Expression<Func<TEntity, bool>> predicate);
+
+        Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> predicate);
+
+        Task<TEntity> AddAsync(TEntity entity);
 
         /// <summary>
         /// IEnumerable tipinde gönderilen birden fazla nesneyi oluşturur.
         /// </summary>
         /// <param name="entities"></param>
         /// <returns></returns>
-        Task AddRangeAsync(IEnumerable<TEntity> entities);
+        Task<IEnumerable<TEntity>> AddRangeAsync(IEnumerable<TEntity> entities);
         
         /// <summary>
         /// Parametre olarak gönderilen nesneyi siler
@@ -31,7 +35,7 @@ namespace WebApiProject.Core.Services
         /// IEnumerable tipinde gönderilen birden fazla nesneyi siler
         /// </summary>
         /// <param name="entity"></param>
-        void RemoveRange(IEnumerable<TEntity> entity);
+        void RemoveRange(IEnumerable<TEntity> entities);
 
         /// <summary>
         /// Parametre olarak verilen nesneyi günceller
@@ -39,5 +43,14 @@ namespace WebApiProject.Core.Services
         /// <param name="entity"></param>
         /// <returns>Güncellenen nesneyi döndürür</returns>
         TEntity Update(TEntity entity);
+
+        /// <summary>
+        /// Parametre olarak verilen nesneyi asenkron olarak günceller.
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns>Güncellenen nesneyi döndürür</returns>
+        Task<TEntity> UpdateAsync(TEntity entity);
+
+
     }
 }
