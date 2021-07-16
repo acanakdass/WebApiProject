@@ -17,9 +17,15 @@ namespace WebApiProject.API.AutoMapper.Mappings
 
             CreateMap<Category, CategoryWithProductsDto>();
             CreateMap<CategoryWithProductsDto, Category>();
+            
+            CreateMap<Person, PersonDto>();
+            CreateMap<PersonDto, Person>();
+
 
             CreateMap<Product, ProductDto>();
             CreateMap<ProductDto, Product>();
+            CreateMap<Product, ProductWithCategoryDto>();
+            CreateMap<ProductWithCategoryDto, Product>();
         }
     }
 }

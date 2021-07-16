@@ -37,7 +37,15 @@ namespace WebApiProject.API.Controllers
         {
             var product = await _productService.GetByIdAsync(id);
             var productDto = _mapper.Map<ProductDto>(product);
-            return Ok(product);
+            return Ok(productDto);
+        }
+
+        [HttpGet("{id}/category")]
+        public async Task<IActionResult> GetByIdWithCategory(int id)
+        {
+            var product = await _productService.GetByIdWithCategories(id);
+            var productWithCategoryDto = _mapper.Map<ProductWithCategoryDto>(product);
+            return Ok(productWithCategoryDto);
         }
 
         [HttpPost]
@@ -57,14 +65,14 @@ namespace WebApiProject.API.Controllers
             return Ok(productDto);
         }
 
-        [HttpDelete("${id}")]
+        [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
             var productToDelete = _productService.GetByIdAsync(id).Result;
             _productService.Remove(productToDelete);
             return Ok();
-
         }
+
 
     }
 }

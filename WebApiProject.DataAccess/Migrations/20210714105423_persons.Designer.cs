@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApiProject.DataAccess.Concrete.EfCore.Context;
 
 namespace WebApiProject.DataAccess.Migrations
 {
     [DbContext(typeof(WebApiProjectContext))]
-    partial class WebApiProjectContextModelSnapshot : ModelSnapshot
+    [Migration("20210714105423_persons")]
+    partial class persons
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

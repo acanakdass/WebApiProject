@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApiProject.DataAccess.Concrete.EfCore.Context;
 
 namespace WebApiProject.DataAccess.Migrations
 {
     [DbContext(typeof(WebApiProjectContext))]
-    partial class WebApiProjectContextModelSnapshot : ModelSnapshot
+    [Migration("20210714100156_AddPersonsTable")]
+    partial class AddPersonsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -52,30 +54,6 @@ namespace WebApiProject.DataAccess.Migrations
                             IsDeleted = false,
                             Name = "Phones"
                         });
-                });
-
-            modelBuilder.Entity("WebApiProject.Core.Entities.Person", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
-                        .HasAnnotation("SqlServer:IdentitySeed", 1)
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Persons");
                 });
 
             modelBuilder.Entity("WebApiProject.Core.Entities.Product", b =>
